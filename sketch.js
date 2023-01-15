@@ -71,25 +71,26 @@ if(gameState === End){
 function spawn_Asteroid(){
     
     if (frameCount % 340 === 0){
-    var asteroid = createSprite(200, -50)
+    asteroid = createSprite(400,50)
     asteroid.scale = 0.2;
     var invisible = createSprite(200,15);
     invisible.width = asteroid.width;
     invisible.height = asteroid.height;
     asteroidsGroup.add(asteroid)
     invisibleGroup.add(invisible)
-    invisible.visible = true
+    
     
     asteroid.velocityY = 2
-    asteroid.x = Math.round(random(height,width));
-    asteroid.x = invisible.x
+    //asteroid.x = Math.round(random(height,width));
+    asteroid.x = Math.round(random(10,1280));
+    invisible.x = asteroid.x
     invisible.velocityY = 2;
     asteroid.addImage("aster",asteroidimg)
     rocket.depth = asteroid.depth;
     rocket.depth +=1;
-    asteroid.setCollider("circle",0,0,230);
-    //asteroid.debug = true
-    invisible.visible = false;
+    invisible.setCollider("rectangle",0,30,100,200);
+    invisible.debug = true
+    invisible.visible = true;
     if(invisible.isTouching(rocket)){
         space.velocityY = 0
     }
